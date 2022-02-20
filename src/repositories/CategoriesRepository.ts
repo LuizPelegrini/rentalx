@@ -3,13 +3,9 @@
  */
 
 import Category from '../model/Category';
+import { ICategoriesRepository, IRequest } from './ICategoriesRepository';
 
-interface ICreateCategoryDTO {
-  name: string;
-  description: string;
-}
-
-class CategoriesRepository {
+class CategoriesRepository implements ICategoriesRepository {
   categories: Category[];
 
   constructor() {
@@ -20,7 +16,7 @@ class CategoriesRepository {
    * Creates a new category
    * @param data ICreateCategoryDTO
    */
-  create({ name, description }: ICreateCategoryDTO): void {
+  create({ name, description }: IRequest): void {
     const category = new Category();
 
     Object.assign(category, {

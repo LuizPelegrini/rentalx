@@ -1,15 +1,15 @@
-import CategoriesRepository from '../repositories/CategoriesRepository';
+import { ICategoriesRepository } from '../repositories/ICategoriesRepository';
 
-interface IRequest {
+interface IRequestDTO {
   name: string;
   description: string;
 }
 
 class CreateCategoryService {
   // Dependency Inversion Principle - Service does not know how the Repository is implemented
-  constructor(private categoriesRepository: CategoriesRepository) {}
+  constructor(private categoriesRepository: ICategoriesRepository) {}
 
-  execute({ name, description }: IRequest): void {
+  execute({ name, description }: IRequestDTO): void {
     // Category name must be unique
     const categoryAlreadyExists = this.categoriesRepository.findByName(name);
     if (categoryAlreadyExists) {
