@@ -2,7 +2,7 @@
  * Repository to manipulate Category data
  */
 
-import Category from '../model/Category';
+import Category from '../models/Category';
 import { ICategoriesRepository, IRequest } from './ICategoriesRepository';
 
 class CategoriesRepository implements ICategoriesRepository {
