@@ -1,3 +1,7 @@
+/**
+ * Repository to manipulate Category data
+ */
+
 import Category from '../models/Category';
 
 interface IRequest {
