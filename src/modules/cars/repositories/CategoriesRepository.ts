@@ -2,10 +2,21 @@ import Category from '../models/Category';
 import { ICategoriesRepository, IRequest } from './ICategoriesRepository';
 
 class CategoriesRepository implements ICategoriesRepository {
-  categories: Category[];
+  private categories: Category[];
 
-  constructor() {
+  // eslint-disable-next-line no-use-before-define
+  private static INSTANCE: CategoriesRepository;
+
+  private constructor() {
     this.categories = [];
+  }
+
+  static getInstance(): CategoriesRepository {
+    if (!CategoriesRepository.INSTANCE) {
+      CategoriesRepository.INSTANCE = new CategoriesRepository();
+    }
+
+    return CategoriesRepository.INSTANCE;
   }
 
   /**
@@ -29,6 +40,7 @@ class CategoriesRepository implements ICategoriesRepository {
 
   findByName(name: string): Category {
     const category = this.categories.find((category) => category.name === name);
+
     return category;
   }
 }
